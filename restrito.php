@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+    if(isset($_SESSION['usuario']) == true) {
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,3 +17,10 @@
     <h1>Bem vindo!</h1>
 </body>
 </html>
+
+<?php
+    }
+    else {
+        header ("Location: login.html");
+    }
+?>

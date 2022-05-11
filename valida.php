@@ -1,15 +1,15 @@
 <?php
+session_start();
+extract($_POST);
 
-$nome = $_POST["nome"];
-$senha = $_POST["senha"];
-
-if($nome != "admin" && $senha != "123") {
-    echo '<script type="text/javascript"> alert("Login inválido! Tente novamente!");</script>';
-    
-    echo '<script>window.location="login.html";</script>';
-}else {
-    echo '<script type="text/javascript"> alert("Acesso permitido! Redirecionando!");</script>';
-
-    echo '<script>window.location="restrito.php";</script>';
+if($nome == "admin" && $senha == "123") {
+    $_SESSION['usuario'] = [
+        'nome' => $nome,
+        'senha' => $senha
+    ];
+    header ("Content-type: application/json");
+    echo (json_encode(["mensagem" => "OK"]));
 }
-
+else {
+    echo "Usuário ou senha inválidos!";
+}
